@@ -14,9 +14,36 @@ class Product
     protected $title;
     
     /**
-     * @var string
+     * @var object refering product category
      */
-    protected $text;
+    protected $categ;
     
+    
+    // Construct function with values
+    public function __construct($id = null, $title = null, $categ = null) 
+    {
+    	$this->id = $id;
+    	$this->title = $title;
+    	$this->categ = $categ;	
+    	
+    }
  
+    
+    public function getId()
+    {	
+    	return $this->id;
+    }
+    
+    public function getTitle()
+    {
+    	return $this->title;
+    }
+    
+    public function getCateg()
+    {
+    	return $this->categ;
+    }
+    
+    
+    
 }

@@ -35,9 +35,7 @@ return [
     ],
     'service_manager' => array(
         'factories' => array(
-          /*  'Fieldset\Mapper\ProductMapperInterface'   => 'Fieldset\Factory\ZendMapperFactory',
-            'Fieldset\Service\ProductServiceInterface' => 'Fieldset\Service\Factory\ProductServiceFactory'
-            */
+
         )
         )
 ];
