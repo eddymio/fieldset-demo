@@ -2,6 +2,7 @@
 namespace Fieldset\Form;
 
 use Zend\Form\Form;
+use Zend\Form\Element;
 use Fieldset\Form\ItemFieldset;
 
 // One product is defined by a category and list of items
@@ -34,7 +35,7 @@ class ProductForm extends Form
         $this->add(array(
         		'type' => 'number',
         		'name' => 'id',
-        		'options' => ['Provide a numeric ID']
+        		'options' => ['label' => 'Provide a numeric ID']
         ));
         
     
@@ -62,20 +63,48 @@ class ProductForm extends Form
         ]);
 
         // Fieldset for ITEM belonging to product:
-       /* $this->add(array(
-            'name' => 'item-fieldset',
-            'type' => 'ItemFieldset',
-             'options' => array(
-                 'use_as_base_fieldset' => true,
-             ),  		
+        $item = new ItemFieldset('Item-details',null,$this->attributeManager);
+       /* $item->setOptions(
+            [ 
+
+                'template_placeholder' => '__placeholder__'
+            ]
             
+            
+            );
+        */
+        /*
+        $items = new Element\Collection('Item-details');
+        $items->setTargetElement($item);
+        
+        $items->setOptions([
+                     'use_as_base_fieldset' => true,
+                     'should_create_template' => true,
+                     'allow_add' => true,               
+                     'count' => 2,
+            ]
+        );
+        
+        
+        $this->add($items);
+        */
+        // OR : 
+        $this->add(array(
+            'type' => 'collection',
+            'name' => 'items',
+            'options' => array(
+                
+                'should_create_template' => true,
+                'allow_add' => true,   
+                'count' => 2,
+                'target_element' =>  $item,
+                'template_placeholder' => '__placeholder__'
+            )
         ));
         
-        */
-
-
-        $items = new ItemFieldset('Item-details',null,$this->attributeManager);
-        $this->add($items);
+        /***CREATE PRODUCT FIELDSET !!! 
+         * https://framework.zend.com/manual/2.4/en/modules/zend.form.collections.html
+         * ****/
         
         // Submit button :        
         $this->add(array(

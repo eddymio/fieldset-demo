@@ -18,7 +18,7 @@ class ItemFieldset extends Fieldset
         $this->add(array(
             'type' => 'number',
             'name' => 'id',
-        		'options' => ['Provide a numeric ID']
+        		'options' => ['label' => 'Provide a numeric ID']
         ));
         
         $this->add(array(

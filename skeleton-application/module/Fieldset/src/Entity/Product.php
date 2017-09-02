@@ -19,14 +19,18 @@ class Product
     protected $categ;
     
     
+    /**
+     * @var array
+     */
+    protected $items;
+    
     // Construct function with values
     public function __construct($id = null, $title = null, $categ = null) 
     {
     	$this->id = $id;
     	$this->title = $title;
     	$this->categ = $categ;	
-    	
-    }
+      }
  
     
     public function getId()
@@ -44,6 +48,22 @@ class Product
     	return $this->categ;
     }
     
+    /**
+     * @param array $items
+     * @return Product
+     */
+    public function setItems(array $items)
+    {
+        $this->items = $items;
+        return $this;
+    }
     
+    /**
+     * @return array
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
     
 }

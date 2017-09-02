@@ -1,12 +1,91 @@
- <h1>IndexController::indexAction()</h1>
  <?php
  
- $form = $this->form;
+// now replacing formCollection :
+// echo $this->formCollection($form);
 
- $form->prepare();
+ 
+ $form->get('id')->setAttributes([
+     'class'=>'form-control',
+     'placeholder'=>'01'
+ ]);
+ 
+ $form->get('title')->setAttributes([
+     'class'=>'form-control',
+     'placeholder'=>'Type a title'
+ ]);
+ 
+ $form->get('category')->setAttributes([
+     'class'=>'form-control',
+     'rows'=>2
+ ]);
+ 
+ $collection = $form->get('items');
+ 
+ $form->get('submit')->setAttributes(['class'=>'btn btn-primary']);
+ ?>
 
- echo $this->form()->openTag($form);
+<h1>IndexController::indexAction()</h1>
 
- echo $this->formCollection($form);
+<p>
+  Click on the button to add new rows from fieldset
+</p>
+    <?= $this->form()->openTag($form); ?>
+<div class="row">
+  <div class="col-md-6">
 
- echo $this->form()->closeTag();
+        
+    <div class="form-group">
+      <?= $this->formLabel($form->get('id')); ?>
+      <?= $this->formElement($form->get('id')); ?>
+      <?= $this->formElementErrors($form->get('id')); ?>
+    </div>
+        
+    <div class="form-group">
+      <?= $this->formLabel($form->get('title')); ?>
+      <?= $this->formElement($form->get('title')); ?>
+      <?= $this->formElementErrors($form->get('title')); ?>
+    </div>
+        
+    <div class="form-group">
+      <?= $this->formLabel($form->get('category')); ?>
+      <?= $this->formElement($form->get('category')); ?>
+      <?= $this->formElementErrors($form->get('category')); ?>
+    </div>
+  </div>
+</div>
+<p>
+<a class="btn btn-default" id="add" href="#" role="button"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add row</a> 
+</p>
+	<table class="table table-responsive" id="fieldset">
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>DESCRIPTION</th>
+			<th>ATTRIBUTE</th>
+		</tr>
+
+		
+
+	
+	</table>
+	<?=$this->formCollection($collection);?>	
+	
+	
+    <?= $this->formElement($form->get('submit')); ?>    
+    <?= $this->form()->closeTag(); ?>
+
+<!-- Jquery script to add one more row inside the table -->
+<?php /*
+<script>
+$( "#add" ).click(function() {
+ 
+//var newElement = '<tr><td><?= $this->formElement($fieldset->get('id')); ?></td>';
+//newElement+= 	'<td><?= $this->formElement($fieldset->get('name')); ?></td>';
+//newElement+= 	'<td><?= $this->formElement($fieldset->get('description')); ?></td>';
+//newElement+= 	'<td><?= $this->formElement($fieldset->get('attribute')); ?></td></tr>';
+					
+//$( "#fieldset" ).append( $(newElement) );
+ 
+});
+</script>
+*/
