@@ -15,7 +15,6 @@ use Fieldset\Service\AttributeManager;
 
 use Fieldset\Form\ProductForm;
 
-
 class IndexController extends AbstractActionController
 {
 
@@ -54,7 +53,7 @@ class IndexController extends AbstractActionController
     	
     	
     	$form = new ProductForm('product-form',null,$categoryManager,$attributeManager);
-    	
+   	
         return new ViewModel(
             [
                 'form' => $form

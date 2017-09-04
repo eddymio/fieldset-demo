@@ -18,14 +18,14 @@ class ItemFieldset extends Fieldset
         $this->add(array(
             'type' => 'number',
             'name' => 'id',
-        		'options' => ['label' => 'Provide a numeric ID']
+        		//'options' => ['label' => 'Provide a numeric ID']
         ));
         
         $this->add(array(
             'type' => 'text',
             'name' => 'description',
             'options' => array(
-                'label' => 'Item description'
+              //  'label' => 'Item description'
             )
         ));
         
@@ -33,7 +33,7 @@ class ItemFieldset extends Fieldset
             'type' => 'text',
             'name' => 'name',
             'options' => array(
-                'label' => 'Item name'
+               // 'label' => 'Item name'
             )
         ));
         
@@ -45,7 +45,7 @@ class ItemFieldset extends Fieldset
         				'id' => 'attribute',
         		],
         		'options' => [
-        				'label' => 'Attribute',
+        				//'label' => 'Attribute',
         				'empty_option' => '-- Please select --',
         				'value_options' => $attributeManager->getAttributes()
         				

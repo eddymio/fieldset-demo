@@ -2,24 +2,26 @@
  
 // now replacing formCollection :
 // echo $this->formCollection($form);
-
+ $form->prepare();
  
- $form->get('id')->setAttributes([
+ $product = $form->get('new-product');
+ 
+ $product->get('id')->setAttributes([
      'class'=>'form-control',
      'placeholder'=>'01'
  ]);
  
- $form->get('title')->setAttributes([
+ $product->get('title')->setAttributes([
      'class'=>'form-control',
      'placeholder'=>'Type a title'
  ]);
  
- $form->get('category')->setAttributes([
+ $product->get('category')->setAttributes([
      'class'=>'form-control',
      'rows'=>2
  ]);
  
- $collection = $form->get('items');
+ $collection = $product->get('items');
  
  $form->get('submit')->setAttributes(['class'=>'btn btn-primary']);
  ?>
@@ -35,57 +37,79 @@
 
         
     <div class="form-group">
-      <?= $this->formLabel($form->get('id')); ?>
-      <?= $this->formElement($form->get('id')); ?>
-      <?= $this->formElementErrors($form->get('id')); ?>
+      <?= $this->formLabel($product->get('id')); ?>
+      <?= $this->formElement($product->get('id')); ?>
+      <?= $this->formElementErrors($product->get('id')); ?>
     </div>
         
     <div class="form-group">
-      <?= $this->formLabel($form->get('title')); ?>
-      <?= $this->formElement($form->get('title')); ?>
-      <?= $this->formElementErrors($form->get('title')); ?>
+      <?= $this->formLabel($product->get('title')); ?>
+      <?= $this->formElement($product->get('title')); ?>
+      <?= $this->formElementErrors($product->get('title')); ?>
     </div>
         
     <div class="form-group">
-      <?= $this->formLabel($form->get('category')); ?>
-      <?= $this->formElement($form->get('category')); ?>
-      <?= $this->formElementErrors($form->get('category')); ?>
+      <?= $this->formLabel($product->get('category')); ?>
+      <?= $this->formElement($product->get('category')); ?>
+      <?= $this->formElementErrors($product->get('category')); ?>
     </div>
   </div>
 </div>
 <p>
 <a class="btn btn-default" id="add" href="#" role="button"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add row</a> 
 </p>
-	<table class="table table-responsive" id="fieldset">
+	<table class="table table-responsive">
+		<thead>
 		<tr>
 			<th>ID</th>
 			<th>NAME</th>
 			<th>DESCRIPTION</th>
 			<th>ATTRIBUTE</th>
 		</tr>
-
-		
-
+		</thead>
+		<tbody id="fieldset">
+	<?php 
 	
+	//https://framework.zend.com/manual/2.4/en/modules/zend.form.view.helpers.html
+	foreach($collection as $var)
+	{
+	    echo '<tr><td>'.$this->formElement($var->get('id')).'</td>';
+	    echo '<td>'.$this->formElement($var->get('name')).'</td>';
+	    echo '<td>'.$this->formElement($var->get('description')).'</td>';
+	    echo '<td>'.$this->formElement($var->get('attribute')).'</td></tr>';
+	}
+	
+	
+	
+	?>			
+
+		</tbody>
 	</table>
-	<?=$this->formCollection($collection);?>	
-	
+
+	<?php 
+	// Render the collection template
+	echo $this->formCollection()->renderTemplate($collection);
+
+    ?>
 	
     <?= $this->formElement($form->get('submit')); ?>    
     <?= $this->form()->closeTag(); ?>
 
 <!-- Jquery script to add one more row inside the table -->
-<?php /*
+
 <script>
 $( "#add" ).click(function() {
- 
-//var newElement = '<tr><td><?= $this->formElement($fieldset->get('id')); ?></td>';
-//newElement+= 	'<td><?= $this->formElement($fieldset->get('name')); ?></td>';
-//newElement+= 	'<td><?= $this->formElement($fieldset->get('description')); ?></td>';
-//newElement+= 	'<td><?= $this->formElement($fieldset->get('attribute')); ?></td></tr>';
-					
-//$( "#fieldset" ).append( $(newElement) );
- 
+
+	// Counting rows and add a new one below
+     var currentCount = $('#fieldset > tr').length;
+     var template = $('form > span').data('template');
+
+     // replace the place holder with the current count
+     template = template.replace(/__placeholder__/g, currentCount);
+
+     $('#fieldset').append(template);
+
+
 });
 </script>
-*/
+
