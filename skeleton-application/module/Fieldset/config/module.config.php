@@ -37,5 +37,14 @@ return [
         'factories' => array(
 
         )
-        )
+        ),
+    
+    'view_helpers'=> [
+        'factories' => [
+            view\Helper\FormInputTd::class => InvokableFactory::class,
+        ],
+        'aliases' => [
+            'formInputTd' => view\Helper\FormInputTd::class
+        ]
+    ]
 ];

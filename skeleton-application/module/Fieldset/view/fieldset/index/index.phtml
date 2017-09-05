@@ -2,6 +2,7 @@
  
 // now replacing formCollection :
 // echo $this->formCollection($form);
+//we call the Form's prepare() method to prepare the form for rendering. Please note that calling this method is very important. If you forget to do that, there may be some undesired rendering problems.
  $form->prepare();
  
  $product = $form->get('new-product');
@@ -73,7 +74,7 @@
 	//https://framework.zend.com/manual/2.4/en/modules/zend.form.view.helpers.html
 	foreach($collection as $var)
 	{
-	    echo '<tr><td>'.$this->formElement($var->get('id')).'</td>';
+	    echo '<tr><td>'.$this->formInputTd($var->get('id')).'</td>';
 	    echo '<td>'.$this->formElement($var->get('name')).'</td>';
 	    echo '<td>'.$this->formElement($var->get('description')).'</td>';
 	    echo '<td>'.$this->formElement($var->get('attribute')).'</td></tr>';
@@ -88,7 +89,12 @@
 
 	<?php 
 	// Render the collection template
-	echo $this->formCollection()->renderTemplate($collection);
+	//$this->formCollection()->setTemplateWrapper('<span data-template="%s"></span>');
+	//$this->formCollection()->setShouldWrap(false);
+	// Change fieldset wrapper to tr rows
+	  $this->formCollection()->setWrapper('<tr%4$s>%2$s%1$s%3$s</tr>');
+	
+	   echo $this->formCollection()->renderTemplate($collection);
 
     ?>
 	

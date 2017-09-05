@@ -51,7 +51,7 @@ class ProductFieldset extends Fieldset
 
         // Fieldset for ITEM belonging to product - inject the attribute manager to retrieve attributes for each item:
         $item = new ItemFieldset('Item-details',null,$attributeManager);
-        
+
         $this->add(array(
             'type' => 'collection',
             'name' => 'items',
@@ -61,7 +61,8 @@ class ProductFieldset extends Fieldset
                 'allow_add' => true,
                 'count' => 2,
                 'target_element' =>  $item,
-                'template_placeholder' => '__placeholder__'
+                'template_placeholder' => '__placeholder__',
+                
             )
         ));
     }
