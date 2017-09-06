@@ -1,6 +1,6 @@
 <?php
 
-namespace Fieldset\view\Helper;
+namespace Fieldset\View\Helper;
 
 use Zend\Form\View\Helper\FormInput;
 use Zend\Form\ElementInterface;
@@ -36,11 +36,11 @@ class FormInputTd extends FormInput
             $attributes['value'] = '';
         }
         
-        return sprintf(
-            '<td><input %s%s',
+        return '<td>'.sprintf(
+            '<input %s%s',
             $this->createAttributesString($attributes),
             $this->getInlineClosingBracket()
-            );
+            ).'</td>';
     }
    
 }

@@ -34,17 +34,18 @@ return [
         ],
     ],
     'service_manager' => array(
-        'factories' => array(
-
-        )
         ),
     
     'view_helpers'=> [
+
         'factories' => [
-            view\Helper\FormInputTd::class => InvokableFactory::class,
+            View\Helper\FormInputTd::class => InvokableFactory::class,
         ],
         'aliases' => [
-            'formInputTd' => view\Helper\FormInputTd::class
+            'formInputTd' => View\Helper\FormInputTd::class
         ]
+        
+        
+        
     ]
 ];

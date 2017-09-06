@@ -74,7 +74,7 @@
 	//https://framework.zend.com/manual/2.4/en/modules/zend.form.view.helpers.html
 	foreach($collection as $var)
 	{
-	    echo '<tr><td>'.$this->formInputTd($var->get('id')).'</td>';
+	    echo '<tr>'.$this->formInputTd($var->get('id'));
 	    echo '<td>'.$this->formElement($var->get('name')).'</td>';
 	    echo '<td>'.$this->formElement($var->get('description')).'</td>';
 	    echo '<td>'.$this->formElement($var->get('attribute')).'</td></tr>';
