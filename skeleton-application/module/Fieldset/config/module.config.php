@@ -40,9 +40,11 @@ return [
 
         'factories' => [
             View\Helper\FormInputTd::class => InvokableFactory::class,
+        		View\Helper\FormRowTd::class => InvokableFactory::class,
         ],
         'aliases' => [
-            'formInputTd' => View\Helper\FormInputTd::class
+            'formInputTd' => View\Helper\FormInputTd::class,
+        		'formRowTd' => View\Helper\FormRowTd::class
         ]
         
         

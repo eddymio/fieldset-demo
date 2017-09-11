@@ -74,6 +74,8 @@
 	//https://framework.zend.com/manual/2.4/en/modules/zend.form.view.helpers.html
 	foreach($collection as $var)
 	{
+		// you may replace the formInputTd by a forlElement 
+		// we keep this line as an example of use only
 	    echo '<tr>'.$this->formInputTd($var->get('id'));
 	    echo '<td>'.$this->formElement($var->get('name')).'</td>';
 	    echo '<td>'.$this->formElement($var->get('description')).'</td>';
@@ -93,7 +95,11 @@
 	//$this->formCollection()->setShouldWrap(false);
 	// Change fieldset wrapper to tr rows
 	  $this->formCollection()->setWrapper('<tr%4$s>%2$s%1$s%3$s</tr>');
-	
+	  
+	  //https://github.com/zendframework/zend-form/blob/master/src/View/Helper/FormCollection.php
+	  // Set the default input helper as our custom formInputTd instead of formInput
+	  $this->formCollection()->setDefaultElementHelper('formRowTd');
+	  
 	   echo $this->formCollection()->renderTemplate($collection);
 
     ?>
