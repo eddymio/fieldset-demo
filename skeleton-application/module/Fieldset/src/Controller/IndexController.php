@@ -54,9 +54,32 @@ class IndexController extends AbstractActionController
     	
     	$form = new ProductForm('product-form',null,$categoryManager,$attributeManager);
    	
+    	$data = '';
+    	
+    	// Check if user has submitted the form
+    	if ($this->getRequest()->isPost()) {
+    		
+    		// Fill in the form with POST data
+    		$data = $this->params()->fromPost();
+    		
+    		$form->setData($data);
+    		
+    		// Validate form
+    		if($form->isValid()) {
+    			
+    			// Get filtered and validated data
+    			$data = $form->getData();
+    			
+    			
+    			
+    		}
+    	}
+    	
+    	
         return new ViewModel(
             [
-                'form' => $form
+                'form' => $form,
+            		'data' => $data
                 
             ]
             
