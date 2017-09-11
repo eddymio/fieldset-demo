@@ -9,3 +9,6 @@ In this demo you deal with the following :
 - Zend/FormRow and FormInput extend
 - Form collection
 - Dynamic filling using JQuery for our form inputs
+
+
+If you dive into the code, follow the path of the [Fieldset module](https://github.com/eddymio/fieldset-demo/tree/master/skeleton-application/module/Fieldset)
